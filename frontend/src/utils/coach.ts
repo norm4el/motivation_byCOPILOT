@@ -149,7 +149,7 @@ export function getWeeklyReport(sessions: CompletedSession[]): CoachReport {
   const motivationalMessages = [
     "The compound effect of daily focus is extraordinary. Keep building.",
     "Champions aren't born in gyms — they're built in the quiet hours of focused work.",
-    "You're ${weekSessions.length} sessions closer to your best self this week.",
+    `${weekSessions.length} sessions closer to your best self this week.`,
     `${totalXP} XP earned this week. Your future self is grateful.`,
   ];
 

@@ -212,9 +212,8 @@ export function FocusRoom() {
                 value: `~${Math.max(10, Math.round((timer.totalDuration - timer.timeLeft) / 30))}`,
                 color: 'text-violet-400',
               },
-            ].map((stat, i) => (
+            ].map((stat) => (
               <div key={stat.label} className="text-center">
-                {i > 0 && <div className="hidden" />}
                 <p className={`text-xl font-bold font-tabular ${stat.color}`}>{stat.value}</p>
                 <p className="text-xs text-[#64748b]">{stat.label}</p>
               </div>
