@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motivation App 🎯</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────── -->
+<header>
+  <h1><span>🎯</span> Motivation Tracker</h1>
+  <button id="btn-add-goal">+ New Goal</button>
+</header>
+
+<!-- ── Dashboard ───────────────────────────────────────────── -->
+<main id="dashboard">
+
+  <!-- Stats grid -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="stat-total">–</div>
+      <div class="stat-label">Total Goals</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="stat-active">–</div>
+      <div class="stat-label">Active</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="stat-completed">–</div>
+      <div class="stat-label">Completed</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="stat-pct">–</div>
+      <div class="stat-label">Overall %</div>
+    </div>
+  </div>
+
+  <!-- Motivation banner -->
+  <div id="motivation-banner">
+    <span class="banner-icon">💡</span>
+    <span id="motivation-text">Loading…</span>
+  </div>
+
+  <!-- Overall progress bar -->
+  <div id="overall-progress-wrap">
+    <label>
+      <span>Overall Completion</span>
+      <span id="overall-pct-label">0%</span>
+    </label>
+    <div class="progress-outer">
+      <div class="progress-inner" id="overall-bar" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- Goals list -->
+  <section id="goals-section">
+    <h2>Your Goals</h2>
+    <div id="goals-list"></div>
+    <div id="empty-state" style="display:none;">
+      <span class="empty-icon">🌱</span>
+      <p>No goals yet. Click <strong>+ New Goal</strong> to get started!</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Goal Modal ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="goal-modal">
+  <div class="modal-box">
+    <h2 id="modal-title">New Goal</h2>
+    <form id="goal-form" novalidate>
+
+      <div class="form-group">
+        <label for="input-title">Title *</label>
+        <input id="input-title" type="text" placeholder="e.g. Run 5 km every day" required maxlength="120" />
+      </div>
+
+      <div class="form-group">
+        <label for="input-desc">Description</label>
+        <textarea id="input-desc" placeholder="Optional details…" maxlength="400"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="input-target">Target (units / steps)</label>
+        <input id="input-target" type="number" min="1" value="100" />
+      </div>
+
+      <!-- Progress slider – shown only when editing -->
+      <div class="form-group" id="progress-row" style="display:none;">
+        <label>Current Progress</label>
+        <div class="progress-slider-row">
+          <input id="progress-slider" type="range" min="0" max="100" value="0" />
+          <span id="progress-display">0</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="btn-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<!-- ── Toast ───────────────────────────────────────────────── -->
+<div id="toast"></div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
