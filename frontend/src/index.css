@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: #080810;
+    color: #e2e8f0;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #080810;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f0f1a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1a1a2e;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7c3aed;
+  }
+
+  /* Tabular numbers for timer */
+  .font-tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-[#0f0f1a] border border-[#1a1a2e] rounded-xl;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-violet-600 to-cyan-500 text-white font-semibold rounded-lg px-4 py-2 
+           hover:from-violet-500 hover:to-cyan-400 transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-[#080810];
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-[#64748b] hover:text-[#e2e8f0] hover:bg-[#1a1a2e] 
+           rounded-lg px-4 py-2 transition-all duration-200 font-medium;
+  }
+
+  .input-dark {
+    @apply bg-[#0f0f1a] border border-[#1a1a2e] rounded-lg px-3 py-2 text-[#e2e8f0] 
+           placeholder-[#64748b] focus:outline-none focus:border-violet-500 
+           focus:ring-1 focus:ring-violet-500 transition-colors duration-200;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .glow-violet {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  }
+}
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* Pulse ring animation */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid currentColor;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Number counter animation */
+@keyframes count-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.count-up {
+  animation: count-up 0.3s ease-out;
+}

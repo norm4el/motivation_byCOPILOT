@@ -1,0 +1,19 @@
+# SQLite database (generated at runtime)
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Flask session / instance
+instance/
+
+# OS
+.DS_Store
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
