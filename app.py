@@ -1,9 +1,11 @@
 import sqlite3
 import os
 from datetime import datetime, timezone
-from flask import Flask, jsonify, request, render_template, abort
+from flask import Flask, jsonify, request, render_template, abort, send_from_directory, send_file
 
 app = Flask(__name__)
+
+FRONTEND_DIST = os.path.join(os.path.dirname(__file__), 'frontend', 'dist')
 
 DB_PATH = os.path.join(os.path.dirname(__file__), "goals.db")
 
@@ -60,6 +62,8 @@ def goal_to_dict(row) -> dict:
 
 @app.route("/")
 def index():
+    if os.path.exists(os.path.join(FRONTEND_DIST, 'index.html')):
+        return send_from_directory(FRONTEND_DIST, 'index.html')
     return render_template("index.html")
 
 
@@ -185,6 +189,25 @@ def stats():
 @app.errorhandler(404)
 def handle_error(e):
     return jsonify({"error": e.description}), e.code
+
+
+# Serve React static assets
+@app.route('/assets/<path:filename>')
+def serve_assets(filename: str):
+    if os.path.exists(FRONTEND_DIST):
+        return send_from_directory(os.path.join(FRONTEND_DIST, 'assets'), filename)
+    abort(404)
+
+
+# Catch-all: serve React app for all non-API routes
+@app.route('/<path:path>')
+def serve_react(path: str):
+    if path.startswith('api/'):
+        abort(404)
+    index_path = os.path.join(FRONTEND_DIST, 'index.html')
+    if os.path.exists(index_path):
+        return send_file(index_path)
+    abort(404)
 
 
 # ---------------------------------------------------------------------------
