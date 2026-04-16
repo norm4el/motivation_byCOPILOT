@@ -384,12 +384,6 @@ export const useAppStore = create<AppStore>()(
           const ach = ACHIEVEMENTS.find((a) => a.id === id);
           return acc + (ach?.xpReward ?? 0);
         }, 0);
-        const now = Date.now();
-        const achUnlockTime = allNewAchs.reduce<Record<string, number>>((acc, id) => {
-          acc[id] = now;
-          return acc;
-        }, {});
-
         if (totalBonusXP > 0) {
           const finalXP = newTotalXP + totalBonusXP;
           newStats.totalXP = finalXP;

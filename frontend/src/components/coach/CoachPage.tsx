@@ -34,7 +34,8 @@ export function CoachPage() {
   const bestTime = analyzeBestTimeOfDay(sessions);
   const weeklyReport = getWeeklyReport(sessions);
   const recentSessions = sessions.slice(-3).reverse();
-  const randomTip = TIPS[Math.floor((Date.now() / 86400000) % TIPS.length)];
+  const MILLISECONDS_PER_DAY = 86_400_000;
+  const randomTip = TIPS[Math.floor((Date.now() / MILLISECONDS_PER_DAY) % TIPS.length)];
 
   return (
     <motion.div

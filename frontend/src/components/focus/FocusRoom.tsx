@@ -53,7 +53,7 @@ export function FocusRoom() {
     } else if (!timer.isPaused && activeSession.isPaused) {
       resumeSession();
     }
-  }, [timer.isPaused]);
+  }, [timer.isPaused, activeSession, pauseSession, resumeSession]);
 
   // Camera events → session events
   useEffect(() => {

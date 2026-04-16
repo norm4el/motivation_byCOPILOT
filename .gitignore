@@ -13,3 +13,7 @@ instance/
 
 # OS
 .DS_Store
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
